@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{ route('post.index') }}">Post</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -59,7 +59,8 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/home') }}">Home</a></li>
+                                    <li><a href="{{ route('home.index') }}">Home</a></li>
+                                    <li><a href="{{ route('post.create') }}">Create Post</a></li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
