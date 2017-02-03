@@ -14,6 +14,16 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.eot',
+    'public/fonts/bootstrap/glyphicons-halflings-regular.eot')
+    .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.svg',
+    'public/fonts/bootstrap/glyphicons-halflings-regular.svg')
+    .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf',
+    'public/fonts/bootstrap/glyphicons-halflings-regular.ttf')
+    .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff',
+    'public/fonts/bootstrap/glyphicons-halflings-regular.woff')
+    .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2',
+    'public/fonts/bootstrap/glyphicons-halflings-regular.woff2')
+    .sass('app.scss')
+    .webpack('app.js');
 });

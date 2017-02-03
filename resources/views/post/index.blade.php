@@ -8,9 +8,10 @@
                 @foreach ($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
-                    <td>{{ $post->post_id }}</td>
+                    <td><a href="{{ route('post.show', uuid_convert($post->post_id)) }}">{{ strtoupper($post->post_id) }}</a></td>
                     <td>{{ $post->post_title }}</td>
                     <td>{{ $post->post_content }}</td>
+                    <td></td>
                 </tr>
                 @endforeach
             </table>

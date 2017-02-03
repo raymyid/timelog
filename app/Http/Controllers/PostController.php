@@ -15,6 +15,16 @@ class PostController extends Controller
         return view('post.index')->withPosts(Post::all());
     }
 
+    public function show($value)
+    {
+        $post_id = uuid_convert($value, true);
+        if (strlen($post_id) !== 36) { return response('404', 404); }
+
+        $post = Post::where('post_id', $post_id)->first();
+
+        return view('post.show')->with('post', $post);
+    }
+
     public function create()
     {
         return view('post.create');
@@ -34,5 +44,7 @@ class PostController extends Controller
         $post->post_content = $request->post_title;
 
         $post->save();
+
+        return redirect()->route('post.show', uuid_convert($post->post_id));
     }
 }

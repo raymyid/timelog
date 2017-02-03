@@ -17,16 +17,16 @@ class UsersTableSeeder extends Seeder
 
         // admin
         User::create([
-            'name'    =>  'admin',
-            'email'  =>    'admin@email.com',
-            'password' => '123',
+            'name' => 'admin',
+            'email' => 'admin@email.com',
+            'password' => bcrypt('123'),
         ]);
 
         for ($i=0; $i < 100; $i++) {
             User::create([
-                'name'    =>  'name'.$i,
-                'email'  =>    'email'.$i.'@email.com',
-                'password' => 'namepwd',
+                'name' => 'name'.$i,
+                'email' => 'email'.$i.'@email.com',
+                'password' => bcrypt('namepwd'),
             ]);
         }
     }

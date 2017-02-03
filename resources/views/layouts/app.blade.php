@@ -36,7 +36,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Timelog') }}
                     </a>
                 </div>
 
@@ -50,25 +50,33 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ route('auth.login') }}">Login</a></li>
+                            <li><a href="{{ route('auth.register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span class="caret">
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('post.create') }}">New Article</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <img src="/img/avatar.png" style="height:20px;"> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ route('user.index', Auth::user()->name) }}">Your profile</a></li>
                                     <li><a href="{{ route('home.index') }}">Home</a></li>
-                                    <li><a href="{{ route('post.create') }}">Create Post</a></li>
                                     <li>
-                                        <a href="{{ url('/logout') }}"
+                                        <a href="{{ route('auth.logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
