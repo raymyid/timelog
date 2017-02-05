@@ -12,7 +12,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('post.index')->withPosts(Post::all());
+        $posts = Post::paginate(25, ['*'], 'pn');
+        return view('post.index')->with('posts', $posts);
     }
 
     public function show($value)

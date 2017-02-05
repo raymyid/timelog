@@ -7,14 +7,14 @@
             <table class="table table-hover">
                 @foreach ($posts as $post)
                 <tr>
-                    <td>{{ $post->id }}</td>
-                    <td><a href="{{ route('post.show', uuid_convert($post->post_id)) }}">{{ strtoupper($post->post_id) }}</a></td>
-                    <td>{{ $post->post_title }}</td>
+                    <td><a href="{{ route('post.show', uuid_convert($post->post_id)) }}">{{ $post->post_title }}</a></td>
                     <td>{{ $post->post_content }}</td>
                     <td></td>
                 </tr>
                 @endforeach
             </table>
+
+            {{ $posts->links('vendor.pagination.bootstrap-4') }}
         </div>
     </div>
 </div>
