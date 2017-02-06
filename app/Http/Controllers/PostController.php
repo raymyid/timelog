@@ -42,7 +42,7 @@ class PostController extends Controller
 
         $post->post_id = Uuid::generate();
         $post->post_title = $request->post_title;
-        $post->post_content = $request->post_title;
+        $post->post_content = $request->post_content;
 
         $post->save();
 
