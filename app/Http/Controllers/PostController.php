@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Webpatser\Uuid\Uuid;
+use Uuid;
+use Purifier;
 
 use App\Models\Post;
 
@@ -42,7 +43,7 @@ class PostController extends Controller
 
         $post->post_id = Uuid::generate();
         $post->post_title = $request->post_title;
-        $post->post_content = $request->post_content;
+        $post->post_content = Purifier::clean($request->post_content);
 
         $post->save();
 
