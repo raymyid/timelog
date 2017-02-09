@@ -13,8 +13,7 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::group([
-    'prefix' => 'auth'], function () {
+Route::group(['prefix' => 'auth'], function () {
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
     Route::post('login', 'Auth\LoginController@login');
@@ -32,8 +31,7 @@ Route::group([
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')
         ->name('auth.password.email');
-}
-);
+});
 
 Route::get('/u/{value}', 'UserController@index')->name('user.index');
 Route::get('/p/{value}', 'PostController@show')->name('post.show');

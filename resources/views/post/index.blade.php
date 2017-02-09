@@ -14,7 +14,7 @@
                 @endforeach
             </table>
 
-            {{ $posts->links('vendor.pagination.bootstrap-4') }}
+            {{ $posts->links() }}
         </div>
     </div>
 </div>

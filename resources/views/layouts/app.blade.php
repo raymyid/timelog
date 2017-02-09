@@ -50,8 +50,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('auth.login') }}">Login</a></li>
-                            <li><a href="{{ route('auth.register') }}">Register</a></li>
+                            <li><a href="{{ route('auth.login') }}">@lang('auth.login')</a></li>
+                            <li><a href="{{ route('auth.register') }}">@lang('auth.register')</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
