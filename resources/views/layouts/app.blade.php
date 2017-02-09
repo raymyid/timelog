@@ -8,16 +8,18 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Timelog') }}</title>
+    <title>@yield('title', 'Timelog') - {{ config('app.name', 'Timelog') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+    @stack('css')
 
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
+
     </script>
 </head>
 <body>
@@ -93,5 +95,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    @stack('javascript')
 </body>
 </html>

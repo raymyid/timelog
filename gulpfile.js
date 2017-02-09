@@ -14,16 +14,16 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.eot',
-    'public/fonts/bootstrap/glyphicons-halflings-regular.eot')
-    .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.svg',
-    'public/fonts/bootstrap/glyphicons-halflings-regular.svg')
-    .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf',
-    'public/fonts/bootstrap/glyphicons-halflings-regular.ttf')
-    .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff',
-    'public/fonts/bootstrap/glyphicons-halflings-regular.woff')
-    .copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2',
-    'public/fonts/bootstrap/glyphicons-halflings-regular.woff2')
+    // bootstrap-fonts
+    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/',
+    'public/fonts/bootstrap/')
+    // wangeditor css, js, fonts
+    .copy('node_modules/wangeditor/dist/css/wangEditor.min.css',
+    'public/css/wangEditor.min.css')
+    .copy('node_modules/wangeditor/dist/js/wangEditor.min.js',
+    'public/js/wangEditor.min.js')
+    .copy('node_modules/wangeditor/dist/fonts/',
+    'public/fonts/')
     .sass('app.scss')
     .webpack('app.js');
 });

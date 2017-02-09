@@ -1,5 +1,21 @@
 @extends('layouts.app')
 
+@section('title', '新建提交')
+
+@push('css')
+<link rel="stylesheet" type="text/css" href="/css/wangEditor.min.css">
+@endpush()
+
+@push('javascript')
+<script type="text/javascript" src="/js/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var wEditor = new wangEditor('divWangEditor');
+            wEditor.create();
+        });
+    </script>
+@endpush()
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -22,7 +38,8 @@
                     <input type="text" class="form-control input-lg" name="post_title" placeholder="Title: sample title">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" name="post_content"></textarea>
+                    <textarea id="divWangEditor" class="form-control" rows="3" name="post_content" style="height: 350px">
+                    </textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Create post</button>
             </form>
