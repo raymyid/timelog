@@ -58,17 +58,16 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
-        $id = Uuid::generate();
         $post = new Post;
 
-        $post->id = $id;
+        $post->id = Uuid::generate();
         $post->user_id = $request->user()->id;
         $post->title = $request->title;
         $post->content = Purifier::clean($request->content);
 
         $post->save();
 
-        return redirect()->route('posts.show2', uuid_convert($id));
+        return redirect()->route('posts.show2', uuid_convert($post->id));
     }
 
     /**

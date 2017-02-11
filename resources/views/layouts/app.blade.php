@@ -65,7 +65,7 @@
                             </li>
                             <li class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <img src="{{ isset(Auth::user()->avatar) ? Auth::user()->avatar : '/img/avatar.png'}}" style="height:20px; border-radius: 3px;"> {{ Auth::user()->nickname or 'None' }} <span class="caret"></span>
+                                    <img src="{{ isset(Auth::user()->avatar) ? Auth::user()->avatar : '/img/avatar.png'}}" style="height:20px; border-radius: 3px;"> {{ Auth::user()->nickname }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">

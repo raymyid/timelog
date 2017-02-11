@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'id', 'username', 'email', 'password',
     ];
 
     /**
@@ -28,4 +29,18 @@ class User extends Authenticatable
     // protected $hidden = [
     //     'password', 'remember_token',
     // ];
+
+    /**
+     * Insert the given attributes and set the ID on the model.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  array  $attributes
+     * @return void
+     */
+    protected function insertAndSetId(Builder $query, $attributes)
+    {
+        $id = $query->insertGetId($attributes, $this->getKeyName());
+
+        $this->setAttribute('auto_pk', $id);
+    }
 }
