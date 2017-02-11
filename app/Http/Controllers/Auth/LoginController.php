@@ -57,7 +57,7 @@ class LoginController extends Controller
     {
         return $this->username;
     }
-    
+
     /**
      * Handle a login request to the application.
      *
@@ -67,7 +67,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $login = $request->get('login');
-        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $request->merge([$field => $login]);
         $this->username = $field;
 

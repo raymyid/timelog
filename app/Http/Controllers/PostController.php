@@ -11,42 +11,123 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show', 'show2']);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
+        //
         $posts = Post::paginate(25);
-        return view('post.index')->with('posts', $posts);
+        return view('posts.index')->with('posts', $posts);
     }
 
-    public function show($value)
-    {
-        $post_id = uuid_convert($value, true);
-        if (strlen($post_id) !== 36) { return response('404', 404); }
-
-        $post = Post::where('post_id', $post_id)->first();
-
-        return view('post.show')->with('post', $post);
-    }
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('post.create');
+        //
+        return view('posts.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
+        //
         $this->validate($request, [
-            'post_title' => 'required|unique:posts|max:255',
-            'post_content' => 'required',
+            'title' => 'required|max:255',
+            'content' => 'required',
         ]);
 
+        $id = Uuid::generate();
         $post = new Post;
 
-        $post->post_id = Uuid::generate();
-        $post->post_title = $request->post_title;
-        $post->post_content = Purifier::clean($request->post_content);
+        $post->id = $id;
+        $post->user_id = $request->user()->id;
+        $post->title = $request->title;
+        $post->content = Purifier::clean($request->content);
 
         $post->save();
 
-        return redirect()->route('post.show', uuid_convert($post->post_id));
+        return redirect()->route('posts.show2', uuid_convert($id));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show2($id)
+    {
+        $post = Post::where('id', uuid_convert($id, true))->first();
+
+        if (is_null($post)) { return '404'; }
+
+        return view('posts.show')->with('post', $post);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Post $post)
+    {
+        return view('posts.show')->with('post', $post);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Post $post)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Post $post)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Post $post)
+    {
+        //
     }
 }

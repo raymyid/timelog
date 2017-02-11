@@ -10,13 +10,13 @@ class UserController extends Controller
 {
     public function index($value)
     {
-        $user = User::where('name', $value)->first();
+        $user = User::where('username', $value)->first();
 
         if (is_null($user))
         {
             return response('404', 404);
         }
 
-        return view('user.index')->with('user', $user);
+        return view('users.index')->with('user', $user);
     }
 }

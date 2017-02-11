@@ -169,6 +169,7 @@ return [
 
         //
         Mews\Purifier\PurifierServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

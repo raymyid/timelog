@@ -2,10 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-use Webpatser\Uuid\Uuid;
-
-use App\Models\Post;
-
 class PostsTableSeeder extends Seeder
 {
     /**
@@ -15,14 +11,24 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::Table('posts')->delete();
+        $faker = Faker\Factory::create();
+        $users = App\Models\User::pluck('id')->all();
+        $posts = [];
 
-        for ($i=0; $i < 100; $i++) {
-            Post::create([
-                'post_id'       =>  Uuid::generate(),
-                'post_title'    =>  'Post-Title'.$i,
-                'post_content'  =>  'Post-Content'.$i,
-            ]);
+        DB::table('posts')->delete();
+
+        foreach (range(1, 100) as $i)
+        {
+            $posts[] = [
+                'id' => $faker->uuid,
+                'user_id' => $faker->randomElement($users),
+                'title' => $faker->sentence,
+                'content' => $faker->text(2222),
+                'created_at' => $faker->dateTimeThisYear,
+                'updated_at' => $faker->dateTimeThisYear,
+            ];
         }
+
+        DB::table('posts')->insert($posts);
     }
 }

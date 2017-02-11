@@ -2,8 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Models\User;
-
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -13,21 +11,29 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::Table('users')->delete();
+        // $users = factory(App\Models\User::class)->times(300)->make();
+        // App\Models\User::insert($users->toArray());
 
-        // admin
-        User::create([
-            'name' => 'admin',
-            'email' => 'admin@email.com',
-            'password' => bcrypt('123'),
-        ]);
+        $faker = Faker\Factory::create();
+        $users = [];
 
-        for ($i=0; $i < 100; $i++) {
-            User::create([
-                'name' => 'name'.$i,
-                'email' => 'email'.$i.'@email.com',
-                'password' => bcrypt('namepwd'),
-            ]);
+        DB::table('users')->delete();
+
+        foreach (range(1, 100) as $i)
+        {
+            $users[] = [
+                'id' => $faker->uuid,
+                'username' => str_replace('.', '', $faker->userName),
+                'nickname' => $faker->name,
+                'email' => $faker->unique()->freeEmail,
+                'avatar' => $faker->imageUrl(300, 300, 'cats'),
+                'password' => bcrypt('123'),
+                'remember_token' => str_random(10),
+                'created_at' => $faker->dateTimeThisYear,
+                'updated_at' => $faker->dateTimeThisYear,
+            ];
         }
+
+        DB::table('users')->insert($users);
     }
 }

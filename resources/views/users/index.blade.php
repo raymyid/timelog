@@ -4,15 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <img src="/img/avatar.png" alt="" class="img-thumbnail" style="height:230px;">
-            <h2>{{ $user->id }}</h2>
-            <h4>{{ $user->name }}</h4>
+            <img src="{{ $user->avatar or '/img/avatar.png' }}" class="img-thumbnail" style="height:230px;">
+            <h4>{{ $user->nickname }}</h4>
+            <h5>{{ $user->username }}</h5>
         </div>
         <div class="col-lg-9">
             <table class="table table-hover">
                 <tr>
                     <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->nickname }}</td>
+                    <td>{{ $user->username }}</td>
                     <td>{{ $user->email }}</td>
                 </tr>
             </table>

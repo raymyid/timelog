@@ -45,7 +45,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('post.index') }}">Post</a></li>
+                        <li><a href="{{ route('posts.index') }}">Posts</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -60,16 +60,16 @@
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span class="caret">
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('post.create') }}">New Article</a></li>
+                                    <li><a href="{{ route('posts.create') }}">New Article</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <img src="/img/avatar.png" style="height:20px;"> {{ Auth::user()->name }} <span class="caret"></span>
+                                    <img src="{{ isset(Auth::user()->avatar) ? Auth::user()->avatar : '/img/avatar.png'}}" style="height:20px; border-radius: 3px;"> {{ Auth::user()->nickname or 'None' }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('user.index', Auth::user()->name) }}">Your profile</a></li>
+                                    <li><a href="{{ route('users.index', Auth::user()->username) }}">Your profile</a></li>
                                     <li><a href="{{ route('home.index') }}">Home</a></li>
                                     <li>
                                         <a href="{{ route('auth.logout') }}"

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Posts All')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -7,9 +9,7 @@
             <table class="table table-hover">
                 @foreach ($posts as $post)
                 <tr>
-                    <td><a href="{{ route('post.show', uuid_convert($post->post_id)) }}">{{ $post->post_title }}</a></td>
-                    <td>{{ $post->post_content }}</td>
-                    <td></td>
+                    <td><a href="{{ route('posts.show2', uuid_convert($post->id)) }}">{{ $post->title }}</a></td>
                 </tr>
                 @endforeach
             </table>

@@ -32,13 +32,13 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('post.store') }}" method="post">
+            <form action="{{ route('posts.store') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg" name="post_title" placeholder="Title: sample title">
+                    <input type="text" class="form-control input-lg" name="title" placeholder="Title: sample title">
                 </div>
                 <div class="form-group">
-                    <textarea id="divWangEditor" class="form-control" rows="3" name="post_content" style="height: 350px">
+                    <textarea id="divWangEditor" class="form-control" rows="3" name="content" style="height: 350px">
                     </textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Create post</button>
