@@ -9,7 +9,7 @@
             <table class="table table-hover">
                 @foreach ($posts as $post)
                 <tr>
-                    <td><a href="{{ route('posts.show2', uuid_convert($post->id)) }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ route('posts.show2', uuid_decode($post->id)) }}">{{ $post->title }}</a></td>
                 </tr>
                 @endforeach
             </table>

@@ -67,7 +67,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('posts.show2', uuid_convert($post->id));
+        return redirect()->route('posts.show2', uuid_decode($post->id));
     }
 
     /**
@@ -78,7 +78,7 @@ class PostController extends Controller
      */
     public function show2($id)
     {
-        $post = Post::where('id', uuid_convert($id, true))->first();
+        $post = Post::where('id', uuid_encode($id))->first();
 
         if (is_null($post)) { return '404'; }
 

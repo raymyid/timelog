@@ -7,7 +7,7 @@
     <h1>{{ $post->title }}</h1>
     <h6>
         <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 唯一编号：
-        <a href="{{ route('posts.show2', uuid_convert($post->id)) }}">{{ $post->id }}</a>
+        <a href="{{ route('posts.show2', uuid_decode($post->id)) }}">{{ $post->id }}</a>
     </h6>
     <h6>
         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 创建日期： {{ $post->created_at }}
