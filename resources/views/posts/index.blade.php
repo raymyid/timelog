@@ -8,6 +8,7 @@
         <div class="panel panel-info">
             <div class="panel-body p-0">
                 <div id="all-posts-list">
+
                     @foreach ($posts as $post)
                     <li class="d-table width-full pt-3 pb-2 px-3 border-bottom">
                         <div class="d-table-cell col-1 v-align-top">
@@ -32,17 +33,22 @@
                                     </div>
                                     <div class="d-inline-block">
                                         <span class="glyphicon glyphicon-time"></span>
-                                        <span class="mr-3">2017-02-12 15:16:30</span>
+                                        <span class="mr-3">{{ carbon_diff($post->updated_at) }}</span>
                                     </div>
                                     <div class="d-inline-block">
                                         <span class="glyphicon glyphicon-user"></span>
-                                        <span class="mr-3">NickName</span>
+                                        <span class="mr-3">
+                                            <a href="{{ route('users.show2', $post->user->username) }}">
+                                                {{ $post->user->nickname or $post->user->username }}
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
                     @endforeach
+
                 </div>
             </div>
             <div class="panel-footer">

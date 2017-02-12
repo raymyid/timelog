@@ -8,7 +8,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index($value)
+    public function show2($value)
     {
         $user = User::where('username', $value)->first();
 
@@ -17,6 +17,6 @@ class UserController extends Controller
             return response('404', 404);
         }
 
-        return view('users.index')->with('user', $user);
+        return view('users.show')->with('user', $user);
     }
 }

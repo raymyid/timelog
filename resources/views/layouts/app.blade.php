@@ -69,7 +69,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ route('users.index', Auth::user()->username) }}">Your profile</a></li>
+                                    <li><a href="{{ route('users.show2', Auth::user()->username) }}">Your profile</a></li>
                                     <li><a href="{{ route('home.index') }}">Home</a></li>
                                     <li>
                                         <a href="{{ route('auth.logout') }}"

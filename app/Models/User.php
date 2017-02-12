@@ -43,4 +43,14 @@ class User extends Authenticatable
 
         $this->setAttribute('auto_pk', $id);
     }
+
+    /**
+     * Get user all posts
+     *
+     * @return \App\Models\Post
+     */
+    public function posts()
+    {
+        return $this->hasMany('\App\Models\Post', 'user_id', 'id');
+    }
 }

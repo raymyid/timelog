@@ -10,12 +10,14 @@
         </div>
         <div class="col-lg-9">
             <table class="table table-hover">
+
+                @foreach ($user->posts as $post)
                 <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->nickname }}</td>
-                    <td>{{ $user->username }}</td>
-                    <td>{{ $user->email }}</td>
+                    <td><a href="{{ route('posts.show2', uuid_decode($post->id)) }}">{{ $post->title }}</a></td>
+                    <td>{{ carbon_diff($post->created_at) }}</td>
                 </tr>
+                @endforeach
+
             </table>
         </div>
     </div>

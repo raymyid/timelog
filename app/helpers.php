@@ -41,3 +41,12 @@ if (!function_exists('base64_decode2_uuid')) {
         return uuid_encode($uuid_hex);
     }
 }
+
+use \Carbon\Carbon;
+if (!function_exists('')) {
+    function carbon_diff($data) {
+        Carbon::setLocale('zh');
+        $dt = Carbon::parse($data);
+        return $dt->diffForHumans();
+    }
+}

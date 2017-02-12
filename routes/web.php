@@ -33,9 +33,9 @@ Route::group(['prefix' => 'auth'], function () {
         ->name('auth.password.email');
 });
 
-Route::get('/u/{value}', 'UserController@index')->name('users.index');
-
+Route::get('/u/{value}', 'UserController@show2')->name('users.show2');
 Route::get('/p/{id}', 'PostController@show2')->name('posts.show2');
+
 Route::resource('/posts', 'PostController', ['except' => [
         'show'
     ]
