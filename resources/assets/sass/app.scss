@@ -7,3 +7,147 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.f5 {
+    font-size: 14px !important;
+}
+
+.f6 {
+    font-size: 12px !important;
+}
+
+.gray {
+    color: gray !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.d-inline-block {
+    display: inline-block !important;
+}
+
+.d-table {
+    display: table !important;
+}
+
+.d-table-cell {
+    display: table-cell !important;
+}
+
+.width-full {
+    width: 100%;
+}
+
+.avatar {
+    display: inline-block;
+    line-height: 1;
+    overflow: hidden;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        width: 100% / 12 * $i;
+    }
+}
+
+.v-align-top {
+    vertical-align: top !important;
+}
+
+$border-bottom-width: 1px;
+$border-bottom-color: #e5e5e5;
+$border-bottom-style: solid;
+
+.border-bottom {
+    border-bottom: $border-bottom-width $border-bottom-color $border-bottom-style !important;
+}
+
+$step-size: 4px;
+$step-size-jump: 2;
+$step-start: 0;
+$step-end: 6;
+
+@for $i from $step-start through $step-end {
+    .m-#{$i} {
+        @if $i <= $step-size-jump {
+            margin: $i * $step-size !important;
+        } @else {
+            margin: ($i - $step-size-jump) * $step-size + $i * $step-size !important;
+        }
+    }
+
+    @each $margin-name, $margin-key1, $margin-key2 in (t, top),
+    (r, right),
+    (b, bottom),
+    (l, left),
+    (x, left, right),
+    (y, top, bottom) {
+        .m#{$margin-name}-#{$i} {
+            @if $i <= $step-size-jump {
+                margin-#{$margin-key1}: $i * $step-size !important;
+                @if $margin-key2 {
+                    margin-#{$margin-key2}: $i * $step-size !important;
+                }
+            } @else {
+                margin-#{$margin-key1}: ($i - $step-size-jump) * $step-size + $i * $step-size !important;
+                @if $margin-key2 {
+                    margin-#{$margin-key2}: ($i - $step-size-jump) * $step-size + $i * $step-size !important;
+                }
+            }
+        }
+    }
+}
+
+@for $i from $step-start through $step-end {
+    .p-#{$i} {
+        @if $i <= $step-size-jump {
+            padding: $i * $step-size !important;
+        } @else {
+            padding: ($i - $step-size-jump) * $step-size + $i * $step-size !important;
+        }
+    }
+
+    @each $padding-name, $padding-key1, $padding-key2 in (t, top),
+    (r, right),
+    (b, bottom),
+    (l, left),
+    (x, left, right),
+    (y, top, bottom) {
+        .p#{$padding-name}-#{$i} {
+            @if $i <= $step-size-jump {
+                padding-#{$padding-key1}: $i * $step-size !important;
+                @if $padding-key2 {
+                    padding-#{$padding-key2}: $i * $step-size !important;
+                }
+            } @else {
+                padding-#{$padding-key1}: ($i - $step-size-jump) * $step-size + $i * $step-size !important;
+                @if $padding-key2 {
+                    padding-#{$padding-key2}: ($i - $step-size-jump) * $step-size + $i * $step-size !important;
+                }
+            }
+        }
+    }
+}

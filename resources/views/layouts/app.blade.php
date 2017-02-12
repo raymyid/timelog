@@ -89,9 +89,14 @@
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
+
+    <footer class="mt-6 p-2" style="background-color: #333">
+        <div class="container">
+            <span>Powered by <a href="https://github.com/raymyid/timelog">Timelog</a></span>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
