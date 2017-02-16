@@ -3,16 +3,23 @@
 @section('title', '新建提交')
 
 @push('css')
-<link rel="stylesheet" type="text/css" href="/css/wangEditor.min.css">
 @endpush()
 
 @push('javascript')
-<script type="text/javascript" src="/js/wangEditor.min.js"></script>
+<script src='/js/tinymce/tinymce.min.js'></script>
     <script type="text/javascript">
-        $(function () {
-            var wEditor = new wangEditor('divWangEditor');
-            wEditor.create();
-        });
+    $( "#divtextarea" ).append("<textarea id=\"posttextarea\" name=\"content\" ></textarea>");
+    tinymce.init({
+        selector: '#posttextarea',
+        menubar: false,
+        toolbar: 'bold italic underline strikethrough | link blockquote image | numlist bullist | removeformat | code | fullscreen',
+        plugins: 'link image lists code fullscreen',
+        language: 'zh_CN',
+        height: 350,
+        code_dialog_height: 220,
+        default_link_target: "_blank",
+        imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions"
+    });
     </script>
 @endpush()
 
@@ -38,8 +45,8 @@
                     <input type="text" class="form-control input-lg" name="title" placeholder="Title: sample title">
                 </div>
                 <div class="form-group">
-                    <textarea id="divWangEditor" class="form-control" rows="3" name="content" style="height: 350px">
-                    </textarea>
+                    <div id="divtextarea">    
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-success">Create post</button>
             </form>

@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
 
@@ -99,6 +99,8 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="/js/manifest.js"></script>
+    <script src="/js/vendor.js"></script>
     <script src="/js/app.js"></script>
     @stack('javascript')
 </body>
