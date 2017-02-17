@@ -13,8 +13,8 @@
 
                 @foreach ($user->posts as $post)
                 <tr>
-                    <td><a href="{{ route('posts.show2', uuid_decode($post->id)) }}">{{ $post->title }}</a></td>
-                    <td>{{ carbon_diff($post->created_at) }}</td>
+                    <td><a href="{{ route('posts.show2', uuid_stringToHex($post->id)) }}">{{ $post->title }}</a></td>
+                    <td>更新于 {{ carbon_diff($post->updated_at) }}</td>
                 </tr>
                 @endforeach
 

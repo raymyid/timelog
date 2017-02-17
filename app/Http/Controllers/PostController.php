@@ -29,7 +29,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Post::paginate(25);
+        $posts = Post::orderBy('updated_at', 'desc')->paginate(25);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -62,12 +62,12 @@ class PostController extends Controller
 
         $post->id = Uuid::uuid1();
         $post->user_id = $request->user()->id;
-        $post->title = $request->title;
+        $post->title = trim($request->title);
         $post->content = Purifier::clean($request->content);
 
         $post->save();
 
-        return redirect()->route('posts.show2', uuid_decode($post->id));
+        return redirect()->route('posts.show2', uuid_stringToHex($post->id));
     }
 
     /**
@@ -78,7 +78,7 @@ class PostController extends Controller
      */
     public function show2($id)
     {
-        $post = Post::where('id', uuid_encode($id))->first();
+        $post = Post::where('id', uuid_hexToString($id))->first();
 
         if (is_null($post)) { return '404'; }
 
@@ -107,7 +107,7 @@ class PostController extends Controller
         // 验证是否为 post 拥有者
         if (strcmp(auth()->user()->id, $post->user_id) !== 0)
         {
-            return redirect(route('posts.show2', uuid_decode($post->id)));
+            return redirect(route('posts.show2', uuid_stringToHex($post->id)));
         }
 
         return view('posts.edit')->with('post', $post);
@@ -131,15 +131,15 @@ class PostController extends Controller
         // 校验用户 id 是否为 post 的所有者 id
         if (strcmp($request->user()->id, $post->user_id) !== 0)
         {
-            return redirect(route('posts.show2', uuid_decode($post->id)));
+            return redirect(route('posts.show2', uuid_stringToHex($post->id)));
         }
 
-        $post->title = $request->title;
-        $post->content = $request->content;
+        $post->title = trim($request->title);
+        $post->content = Purifier::clean($request->content);
 
         $post->save();
 
-        return redirect(route('posts.show2', $post->id));
+        return redirect(route('posts.show2', uuid_stringToHex($post->id)));
     }
 
     /**

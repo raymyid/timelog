@@ -46,9 +46,7 @@
                 </div>
                 <div class="form-group">
                     <div id="divtextarea">
-                        <textarea id="posttextarea" name="content" >
-                            {{ $post->content }}
-                        </textarea>
+                        <textarea id="posttextarea" name="content">{!! $post->content !!}</textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Update post</button>

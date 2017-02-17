@@ -19,7 +19,7 @@
                         <div class="d-table-cell v-align-top">
                             <div class="pb-1">
                                 <h3>
-                                    <a href="{{ route('posts.show2', uuid_decode($post->id)) }}">{{ $post->title }}</a>
+                                    <a href="{{ route('posts.show2', uuid_stringToHex($post->id)) }}">{{ $post->title }}</a>
                                 </h3>
                             </div>
                             <div class="pt-1 f6 grasy">
@@ -27,10 +27,6 @@
                                     <span>一句话介绍..</span>
                                 </div>
                                 <div class="float-right">
-                                    <div class="d-inline-block">
-                                        <span class="glyphicon glyphicon-eye-open"></span>
-                                        <span class="mr-3">100</span>
-                                    </div>
                                     <div class="d-inline-block">
                                         <span class="glyphicon glyphicon-time"></span>
                                         <span class="mr-3">{{ carbon_diff($post->updated_at) }}</span>
