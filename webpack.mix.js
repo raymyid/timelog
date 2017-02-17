@@ -16,6 +16,7 @@ mix.sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.extract(['jquery', 'vue']);
 
+mix.copy('resources/assets/tinymce/', 'public/js/tinymce/', false);
 mix.copy('node_modules/tinymce/tinymce.min.js', 'public/js/tinymce/tinymce.min.js', false);
 mix.copy('node_modules/tinymce/plugins/', 'public/js/tinymce/plugins/', false);
 mix.copy('node_modules/tinymce/themes/', 'public/js/tinymce/themes/', false);
