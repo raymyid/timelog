@@ -4,27 +4,34 @@
 
 @section('content')
 <div class="container">
-    <h1>{{ $post->title }}</h1>
-    <h6>
-        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> 唯一编号：
-        <a href="{{ route('posts.show2', uuid_decode($post->id)) }}">{{ $post->id }}</a>
-    </h6>
-    <h6>
-        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 作者：
-            <a href="{{ route('users.show2', $post->user->username) }}">
-                {{ $post->user->nickname }}
-            </a>
-    </h6>
-    <h6>
-        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 创建日期：
-        <span>{{ carbon_diff($post->created_at) }}</span>
-    </h6>
-    <h6>
-        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 最后更新：
-        <span>{{ carbon_diff($post->updated_at) }}</span>
-    </h6>
-    <div class="">
-{!! $post->content !!}
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;">
+            <h1>{{ $post->title }}</h1>
+            作者 <a href="{{ route('users.show2', $post->user->username) }}">{{ $post->user->nickname or $post->user->username }}</a>
+            - 发布于 <span>{{ carbon_diff($post->created_at) }}</span>
+
+            - 最后修改于 <span>{{ carbon_diff($post->updated_at) }}</span>
+@if (Auth::guest() === false)
+    @if (strcmp(Auth::user()->id, $post->user_id) === 0)
+- <a href="{{ route('posts.edit', $post->id) }}">编辑</a>
+    @endif
+@endif
+        </div>
+        <div class="panel-body">
+            <div class="post-content">
+                {!! $post->content !!}
+            </div>
+        </div>
+        <!-- <div class="panel-footer"></div> -->
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            评论
+        </div>
+        <div class="panel-body">
+
+        </div>
+        <!-- <div class="panel-footer"></div> -->
     </div>
 </div>
 @endsection

@@ -104,7 +104,13 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        // 验证是否为 post 拥有者
+        if (strcmp(auth()->user()->id, $post->user_id) !== 0)
+        {
+            return redirect(route('posts.show2', uuid_decode($post->id)));
+        }
+
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -116,7 +122,24 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        // 校验请求的参数
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+
+        // 校验用户 id 是否为 post 的所有者 id
+        if (strcmp($request->user()->id, $post->user_id) !== 0)
+        {
+            return redirect(route('posts.show2', uuid_decode($post->id)));
+        }
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+
+        $post->save();
+
+        return redirect(route('posts.show2', $post->id));
     }
 
     /**
