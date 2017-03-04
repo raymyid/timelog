@@ -20,10 +20,10 @@ class PostsTableSeeder extends Seeder
         foreach (range(1, 100) as $i)
         {
             $posts[] = [
-                'id' => $faker->uuid,
-                'user_id' => $faker->randomElement($users),
-                'title' => $faker->sentence,
-                'content' => $faker->text(2222),
+                'id' => base_convert(uniqid(), 16, 10),
+                'post_user_id' => $faker->randomElement($users),
+                'post_title' => $faker->sentence,
+                'post_content' => $faker->text(2222),
                 'created_at' => $faker->dateTimeThisYear,
                 'updated_at' => $faker->dateTimeThisYear,
             ];

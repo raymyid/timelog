@@ -23,7 +23,7 @@ if (!function_exists('uuid_stringtohex')) {
 }
 
 use \Carbon\Carbon;
-if (!function_exists('')) {
+if (!function_exists('carbon_diff')) {
     function carbon_diff($data) {
         Carbon::setLocale('zh');
         $dt = Carbon::parse($data);

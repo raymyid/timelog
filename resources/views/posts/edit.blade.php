@@ -42,11 +42,11 @@
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg" name="title" placeholder="Title: sample title" value="{!! $post->title !!}">
+                    <input type="text" class="form-control input-lg" name="title" placeholder="Title: sample title" value="{!! $post->post_title !!}">
                 </div>
                 <div class="form-group">
                     <div id="divtextarea">
-                        <textarea id="posttextarea" name="content">{!! $post->content !!}</textarea>
+                        <textarea id="posttextarea" name="content">{!! $post->post_content !!}</textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Update post</button>

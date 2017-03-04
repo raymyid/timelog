@@ -7,29 +7,15 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
-    protected $keyType = 'string';
-
-    /**
-     * Insert the given attributes and set the ID on the model.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  array  $attributes
-     * @return void
-     */
-    protected function insertAndSetId(Builder $query, $attributes)
-    {
-        $id = $query->insertGetId($attributes, $this->getKeyName());
-
-        $this->setAttribute('auto_pk', $id);
-    }
+    public $incrementing = false;
 
     /**
      * Get post user
      *
      * @return \App\Models\User
      */
-    public function user()
+    public function post_user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'post_user_id');
     }
 }

@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show', 'show2']);
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     /**
@@ -60,29 +60,14 @@ class PostController extends Controller
 
         $post = new Post;
 
-        $post->id = Uuid::uuid1();
-        $post->user_id = $request->user()->id;
-        $post->title = trim($request->title);
-        $post->content = Purifier::clean($request->content);
+        $post->id = base_convert(uniqid(), 16, 10);
+        $post->post_user_id = $request->user()->id;
+        $post->post_title = trim($request->title);
+        $post->post_content = Purifier::clean($request->content);
 
         $post->save();
 
-        return redirect()->route('posts.show2', uuid_stringToHex($post->id));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show2($id)
-    {
-        $post = Post::where('id', uuid_hexToString($id))->first();
-
-        if (is_null($post)) { return '404'; }
-
-        return view('posts.show')->with('post', $post);
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -105,9 +90,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         // 验证是否为 post 拥有者
-        if (strcmp(auth()->user()->id, $post->user_id) !== 0)
+        if (strcmp(auth()->user()->id, $post->post_user_id) !== 0)
         {
-            return redirect(route('posts.show2', uuid_stringToHex($post->id)));
+            return redirect(route('posts.show', $post->id));
         }
 
         return view('posts.edit')->with('post', $post);
@@ -129,17 +114,17 @@ class PostController extends Controller
         ]);
 
         // 校验用户 id 是否为 post 的所有者 id
-        if (strcmp($request->user()->id, $post->user_id) !== 0)
+        if (strcmp($request->user()->id, $post->post_user_id) !== 0)
         {
-            return redirect(route('posts.show2', uuid_stringToHex($post->id)));
+            return redirect(route('posts.show', $post->id));
         }
 
-        $post->title = trim($request->title);
-        $post->content = Purifier::clean($request->content);
+        $post->post_title = trim($request->title);
+        $post->post_content = Purifier::clean($request->content);
 
         $post->save();
 
-        return redirect(route('posts.show2', uuid_stringToHex($post->id)));
+        return redirect(route('posts.show', $post->id));
     }
 
     /**

@@ -11,10 +11,11 @@
         <div class="col-lg-9">
             <table class="table table-hover">
 
-                @foreach ($user->posts as $post)
+                @foreach ($user->user_posts as $post)
                 <tr>
-                    <td><a href="{{ route('posts.show2', uuid_stringToHex($post->id)) }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ route('posts.show', $post->id) }}">{{ $post->post_title }}</a></td>
                     <td>更新于 {{ carbon_diff($post->updated_at) }}</td>
+                    <td>更新于 {{ $post->updated_at }}</td>
                 </tr>
                 @endforeach
 

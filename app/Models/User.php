@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $keyType = 'string';
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -22,35 +22,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    // protected $hidden = [
-    //     'password', 'remember_token',
-    // ];
-
-    /**
-     * Insert the given attributes and set the ID on the model.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  array  $attributes
-     * @return void
-     */
-    protected function insertAndSetId(Builder $query, $attributes)
-    {
-        $id = $query->insertGetId($attributes, $this->getKeyName());
-
-        $this->setAttribute('auto_pk', $id);
-    }
-
-    /**
      * Get user all posts
      *
      * @return \App\Models\Post
      */
-    public function posts()
+    public function user_posts()
     {
-        return $this->hasMany('\App\Models\Post', 'user_id', 'id')->orderBy('updated_at', 'desc');
+        return $this->hasMany('\App\Models\Post', 'post_user_id', 'id')->orderBy('updated_at', 'desc');
     }
 }

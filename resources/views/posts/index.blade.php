@@ -13,13 +13,13 @@
                     <li class="d-table width-full pt-3 pb-2 px-3 border-bottom">
                         <div class="d-table-cell col-1 v-align-top">
                             <a href="#">
-                                <img class="avatar" width="50" alt="Username" src="http://lorempixel.com/300/300/cats/?29164" >
+                                <img class="avatar" width="50" alt="{{ $post->post_user->username }}" src="{{ $post->post_user->avatar }}" >
                             </a>
                         </div>
                         <div class="d-table-cell v-align-top">
                             <div class="pb-1">
                                 <h3>
-                                    <a href="{{ route('posts.show2', uuid_stringToHex($post->id)) }}">{{ $post->title }}</a>
+                                    <a href="{{ route('posts.show', $post->id) }}">{{ $post->post_title }}</a>
                                 </h3>
                             </div>
                             <div class="pt-1 f6 grasy">
@@ -34,9 +34,7 @@
                                     <div class="d-inline-block">
                                         <span class="glyphicon glyphicon-user"></span>
                                         <span class="mr-3">
-                                            <a href="{{ route('users.show2', $post->user->username) }}">
-                                                {{ $post->user->nickname or $post->user->username }}
-                                            </a>
+                                            <a href="{{ route('users.show2', $post->post_user->username) }}">{{ $post->post_user->nickname or $post->post_user->username }}</a>
                                         </span>
                                     </div>
                                 </div>

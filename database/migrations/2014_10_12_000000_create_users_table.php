@@ -14,17 +14,16 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('auto_pk');
-            $table->uuid('id')->unique();
+            $table->bigInteger('id')->unsigned()->primary();
             $table->string('username', 50)->unique()->nullable();
             $table->string('nickname', 50)->index()->nullable();
             $table->string('email', 100)->unique()->nullable();
             $table->string('avatar')->nullable();
             $table->string('password')->nullable();
-            $table->jsonb('extra')->nullable();
             $table->rememberToken();
-            $table->softDeletes();
-            $table->timestamps();
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

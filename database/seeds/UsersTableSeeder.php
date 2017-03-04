@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         foreach (range(1, 100) as $i)
         {
             $users[] = [
-                'id' => $faker->uuid,
+                'id' => base_convert(uniqid(), 16, 10),
                 'username' => str_replace('.', '', $faker->userName),
                 'nickname' => $faker->name,
                 'email' => $faker->unique()->freeEmail,
