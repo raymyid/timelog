@@ -17,7 +17,20 @@ class UsersTableSeeder extends Seeder
         $faker = Faker\Factory::create();
         $users = [];
 
-        DB::table('users')->delete();
+        // DB::table('users')->delete();
+
+        $admin = [
+            'id' => 10000,
+            'username' => 'admin',
+            'nickname' => 'admin',
+            'password' => bcrypt('admin'),
+            'created_at' => $faker->dateTimeThisYear,
+            'updated_at' => $faker->dateTimeThisYear,
+        ];
+
+        if (is_null(DB::table('users')->where('id', 10000)->first())) {
+            DB::table('users')->insert($admin);
+        }
 
         foreach (range(1, 100) as $i)
         {
@@ -27,8 +40,7 @@ class UsersTableSeeder extends Seeder
                 'nickname' => $faker->name,
                 'email' => $faker->unique()->freeEmail,
                 'avatar' => $faker->imageUrl(300, 300, 'cats'),
-                'password' => bcrypt('123'),
-                'remember_token' => str_random(10),
+                'password' => bcrypt('password123'),
                 'created_at' => $faker->dateTimeThisYear,
                 'updated_at' => $faker->dateTimeThisYear,
             ];

@@ -12,10 +12,10 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        $users = App\Models\User::pluck('id')->all();
+        $users = DB::table('users')->pluck('id')->all();
         $posts = [];
 
-        DB::table('posts')->delete();
+        // DB::table('posts')->delete();
 
         foreach (range(1, 100) as $i)
         {

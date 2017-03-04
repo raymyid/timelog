@@ -65,7 +65,7 @@
                             </li>
                             <li class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <img src="{{ isset(Auth::user()->avatar) ? Auth::user()->avatar : '/img/avatar.png'}}" style="height:20px; border-radius: 3px;"> {{ Auth::user()->nickname }} <span class="caret"></span>
+                                    <img src="{{ isset(Auth::user()->avatar) ? Auth::user()->avatar : '/img/default_avatar0.png'}}" style="height:20px; border-radius: 3px;"> {{ Auth::user()->nickname }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -94,7 +94,7 @@
 
     <footer class="mt-6 p-2" style="background-color: #333">
         <div class="container">
-            <span>Powered by <a href="https://github.com/raymyid/timelog">Timelog</a></span>
+            <span>Powered by <a href="https://github.com/xiaoruicode/timelog">Timelog</a></span>
         </div>
     </footer>
 

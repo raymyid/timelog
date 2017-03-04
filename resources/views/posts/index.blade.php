@@ -13,7 +13,7 @@
                     <li class="d-table width-full pt-3 pb-2 px-3 border-bottom">
                         <div class="d-table-cell col-1 v-align-top">
                             <a href="#">
-                                <img class="avatar" width="50" alt="{{ $post->post_user->username }}" src="{{ $post->post_user->avatar }}" >
+                                <img class="avatar" width="50" alt="{{ $post->post_user->username }}" src="{{ isset($post->post_user->avatar) ? $post->post_user->avatar : '/img/default_avatar0.png'}}" >
                             </a>
                         </div>
                         <div class="d-table-cell v-align-top">
