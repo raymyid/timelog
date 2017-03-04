@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <img src="{{ $user->avatar or '/img/avatar.png' }}" class="img-thumbnail" style="height:230px;">
+            <img src="{{ $user->avatar or '/img/default_avatar0.png' }}" class="img-thumbnail" style="height:230px;">
             <h4>{{ $user->nickname }}</h4>
             <h5>{{ $user->username }}</h5>
         </div>

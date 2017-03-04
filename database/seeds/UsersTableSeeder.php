@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
                 'username' => str_replace('.', '', $faker->userName),
                 'nickname' => $faker->name,
                 'email' => $faker->unique()->freeEmail,
-                'avatar' => $faker->imageUrl(300, 300, 'cats'),
+                'avatar' => $faker->imageUrl(300, 300),
                 'password' => bcrypt('password123'),
                 'created_at' => $faker->dateTimeThisYear,
                 'updated_at' => $faker->dateTimeThisYear,
