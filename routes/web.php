@@ -35,6 +35,8 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::get('/u/{value}', 'UserController@show2')->name('users.show2');
 
-Route::resource('/posts', 'PostController');
+Route::resource('posts', 'PostController');
+Route::resource('comments', 'CommentController');
+Route::resource('commentreplies', 'CommentReplyController');
 
-Route::get('/home', 'HomeController@index')->name('home.index');
+Route::get('home', 'HomeController@index')->name('home.index');

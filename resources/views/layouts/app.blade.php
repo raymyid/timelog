@@ -89,7 +89,7 @@
                 </div>
             </div>
         </nav>
-        @yield('content')
+@yield('content')
     </div>
 
     <footer class="mt-6 p-2" style="background-color: #333">

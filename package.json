@@ -12,6 +12,8 @@
     "jquery": "^3.1.1",
     "laravel-mix": "^0.7.2",
     "lodash": "^4.17.4",
+    "primer-layout": "^0.3.1",
+    "primer-utilities": "^4.0.1",
     "tinymce": "^4.5.3",
     "vue": "^2.1.10"
   }
