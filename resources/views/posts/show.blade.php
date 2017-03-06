@@ -6,7 +6,7 @@
 <script src='/js/tinymce/tinymce.min.js'></script>
     <script type="text/javascript">
     tinymce.init({
-        selector: '#posttextarea',
+        selector: '#form-comment-textarea',
         menubar: false,
         toolbar: 'bold italic underline strikethrough | link blockquote image | numlist bullist | removeformat | code | fullscreen',
         plugins: 'link image lists code fullscreen',
@@ -88,12 +88,10 @@
                         <input type="hidden" name="comment_post_id" value="{{ $post->id }}">
                         <input type="hidden" name="comment_user_id" value="{{ is_null(auth()->user()) ? '0' : auth()->user()->id }}">
                         <input type="hidden" name="comment_to_user_id" value="{{ $post->post_user_id }}">
-                        <div class="form-group">
-                            <div id="divtextarea">
-                                <textarea id="posttextarea" name="comment_content"></textarea>
-                            </div>
+                        <div id="divtextarea">
+                            <textarea id="form-comment-textarea" name="comment_content" style="height:250px; width: 650px; resize: none;"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success">Submit Comment</button>
+                        <button type="submit" class="btn btn-success mt-2">Submit Comment</button>
                     </form>
                 </div>
             </div>

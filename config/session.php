@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'lifetime' => 120,
+    'lifetime' => env('SESSION_LIEFTIME', 120),
 
     'expire_on_close' => false,
 
@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'cookie' => 'laravel_session',
+    'cookie' => env('SESSION_COOKIE_NAME', 'TIMELOG_SESSION'),
 
     /*
     |--------------------------------------------------------------------------

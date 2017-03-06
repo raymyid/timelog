@@ -7,15 +7,15 @@
                 <div id="all-posts-list">
                     @foreach ($posts as $post)
                     <div class="d-table width-full py-2 border-bottom">
-                        <div class="d-table-cell col-1 v-align-top">
+                        <div class="d-table-cell v-align-top" style="width: 50px;">
                             <a href="#">
-                                <img class="border" width="50px" style="border-radius: 50px;" alt="{{ $post->post_user->username }}" src="{{ isset($post->post_user->avatar) ? $post->post_user->avatar : '/img/default_avatar0.png'}}" >
+                                <img class="border" width="50px" style="border-radius: 50%;" alt="{{ $post->post_user->username }}" src="{{ isset($post->post_user->avatar) ? $post->post_user->avatar : '/img/default_avatar0.png'}}" >
                             </a>
                         </div>
                         <div class="d-table-cell pl-2 v-align-top">
-                            <h3 class="mt-0 mb-1">
+                            <h4 class="mt-0 mb-1">
                                 <a href="{{ route('posts.show', $post->id) }}">{{ $post->post_title }}</a>
-                            </h3>
+                            </h4>
                             <div class="pt-1 f6 grasy">
                                 <div class="d-inline-block mr-2">
                                     <span class="glyphicon glyphicon-user"></span>

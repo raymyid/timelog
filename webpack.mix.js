@@ -11,10 +11,12 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js');
+mix.sass('resources/assets/sass/framework.scss', 'public/css');
 mix.sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js');
 
 mix.extract(['jquery', 'vue']);
+mix.version();
 
 mix.copy('resources/assets/tinymce/', 'public/js/tinymce/', false);
 mix.copy('node_modules/tinymce/tinymce.min.js', 'public/js/tinymce/tinymce.min.js', false);

@@ -11,7 +11,8 @@
     <title>@yield('title', 'Timelog') - {{ config('app.name', 'Timelog') }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
+    <link rel="stylesheet" type="text/css" href="{{ mix('/css/framework.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}">
     @stack('css')
 
     <!-- Scripts -->
@@ -24,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default rounded-0 border-0 box-shadow-large">
             <div class="container">
                 <div class="navbar-header">
 
@@ -99,9 +100,9 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="/js/manifest.js"></script>
-    <script src="/js/vendor.js"></script>
-    <script src="/js/app.js"></script>
+    <script src="{{ mix('/js/manifest.js') }}"></script>
+    <script src="{{ mix('/js/vendor.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
     @stack('javascript')
 </body>
 </html>

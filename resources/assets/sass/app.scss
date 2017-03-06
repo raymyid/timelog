@@ -1,28 +1,6 @@
 
-// Fonts
-// @import url(https://fonts.css.network/css?family=Raleway:300,400,600);
-
-// Variables
-@import "variables";
-
-// Primer Support
-@import "node_modules/primer-support/index";
-// Primer Utilities
-@import "node_modules/primer-utilities/lib/animations";
-@import "node_modules/primer-utilities/lib/borders";
-@import "node_modules/primer-utilities/lib/box-shadow";
-@import "node_modules/primer-utilities/lib/colors";
-@import "node_modules/primer-utilities/lib/flexbox";
-@import "node_modules/primer-utilities/lib/layout";
-@import "node_modules/primer-utilities/lib/margin";
-@import "node_modules/primer-utilities/lib/padding";
-@import "node_modules/primer-utilities/lib/typography";
-@import "node_modules/primer-utilities/lib/visibility-display";
-// Primer Layout
-@import "node_modules/primer-layout/lib/container.scss";
-@import "node_modules/primer-layout/lib/columns.scss";
-@import "node_modules/primer-layout/lib/grid.scss";
-@import "node_modules/primer-layout/lib/grid-offset.scss";
-
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+body {
+    background-color: rgba(0, 155, 78, 0.23);
+    color: #001c1c;
+    overflow-y: scroll;
+}
