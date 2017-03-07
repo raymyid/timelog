@@ -8,14 +8,13 @@
     tinymce.init({
         selector: '#form-comment-textarea',
         menubar: false,
-        toolbar: 'bold italic underline strikethrough | link blockquote image | numlist bullist | removeformat | code | fullscreen',
-        plugins: 'link image lists code fullscreen',
+        toolbar: 'bold italic strikethrough | blockquote image numlist bullist | code | fullscreen',
+        plugins: 'image lists code fullscreen',
         language: 'zh_CN',
-        height: 250,
-        width: 650,
-        code_dialog_height: 220,
-        default_link_target: "_blank",
-        imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions"
+        skin: 'custom',
+        height: 150,
+        min_height: 100,
+        code_dialog_height: 220
     });
     </script>
 @endpush()
@@ -42,13 +41,13 @@
         </div>
         <!-- <div class="panel-footer"></div> -->
     </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             Comments: {{ count($post->post_comments) }}
         </div>
         <div class="panel-body">
             <div id="post-comments-list">
-
 @foreach ($post->post_comments as $comment)
                 <div class="d-table width-full py-2 border-bottom border-gray-light">
                     <div class="d-table-cell v-align-top" style="width: 32px;">
@@ -82,20 +81,30 @@
                     </div>
                 </div>
 @endforeach
-                <div class="pt-4">
-                    <form action="{{ route('comments.store') }}" method="post">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="comment_post_id" value="{{ $post->id }}">
-                        <input type="hidden" name="comment_user_id" value="{{ is_null(auth()->user()) ? '0' : auth()->user()->id }}">
-                        <input type="hidden" name="comment_to_user_id" value="{{ $post->post_user_id }}">
-                        <div id="divtextarea">
-                            <textarea id="form-comment-textarea" name="comment_content" style="height:250px; width: 650px; resize: none;"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-success mt-2">Submit Comment</button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
 </div>
+
+    <div class="container">
+        <div class="panel panel-default col-md-8 col-lg-9 px-0">
+            <div class="p-2" style="height: 85px;">
+            </div>
+            <div class="pb-2">
+                <form action="{{ route('comments.store') }}" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="comment_post_id" value="{{ $post->id }}">
+                    <input type="hidden" name="comment_user_id" value="{{ is_null(auth()->user()) ? '0' : auth()->user()->id }}">
+                    <input type="hidden" name="comment_to_user_id" value="{{ $post->post_user_id }}">
+                    <div id="divtextarea" class="box-shadow-large">
+                        <textarea id="form-comment-textarea" name="comment_content" class="border-0 p-2" style="min-height:225px; width: 100%; outline: none; resize: none;" placeholder="写点什么吧..."></textarea>
+                    </div>
+                    <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-8 col-md-offset-8 col-lg-offset-8 float-none p-3">
+                        <button type="submit" class="form-control btn btn-success">Submit Comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection

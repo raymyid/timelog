@@ -16,10 +16,13 @@ mix.sass('resources/assets/sass/app.scss', 'public/css');
 mix.js('resources/assets/js/app.js', 'public/js');
 
 mix.extract(['jquery', 'vue']);
-mix.version();
+if (mix.config.inProduction) {
+    mix.version();
+}
 
-mix.copy('resources/assets/tinymce/', 'public/js/tinymce/', false);
-mix.copy('node_modules/tinymce/tinymce.min.js', 'public/js/tinymce/tinymce.min.js', false);
+mix.copy('node_modules/tinymce/tinymce.min.js', 'public/js/tinymce/tinymce.min.js');
 mix.copy('node_modules/tinymce/plugins/', 'public/js/tinymce/plugins/', false);
 mix.copy('node_modules/tinymce/themes/', 'public/js/tinymce/themes/', false);
 mix.copy('node_modules/tinymce/skins/', 'public/js/tinymce/skins/', false);
+mix.copy('node_modules/tinymce/skins/lightgray/', 'public/js/tinymce/skins/custom/', false);
+mix.copy('resources/assets/tinymce/skins/', 'public/js/tinymce/skins/', false);

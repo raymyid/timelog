@@ -9,12 +9,13 @@
 <script src='/js/tinymce/tinymce.min.js'></script>
     <script type="text/javascript">
     tinymce.init({
-        selector: '#posttextarea',
+        selector: '#form-post-textarea',
         menubar: false,
         toolbar: 'bold italic underline strikethrough | link blockquote image | numlist bullist | removeformat | code | fullscreen',
         plugins: 'link image lists code fullscreen',
+        skin: 'custom',
         language: 'zh_CN',
-        height: 350,
+        min_height: 300,
         code_dialog_height: 220,
         default_link_target: "_blank",
         imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions"
@@ -24,32 +25,34 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="page-header">
-                <h2>Edit post</h2>
-            </div>
+    <div class="panel panel-default">
+        <div class="panel-heading border-0">
+            <h2>Edit a post</h2>
+        </div>
+        <div class="panel-body p-0 pb-3">
+            {{-- 判断是否提交有错误，有并回显 --}}
             @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            <div class="alert alert-danger p-5">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @endif
+            {{-- post 表单 --}}
             <form action="{{ route('posts.update', $post->id) }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
-                <div class="form-group">
-                    <input type="text" class="form-control input-lg" name="title" placeholder="Title: sample title" value="{!! $post->post_title !!}">
+                <div class="form-group box-shadow mt-1">
+                    <input type="text" class="form-control input-lg rounded-0 border-0" name="post_title" style="background-color: #faffbd;" value="{!! $post->post_title !!}">
                 </div>
-                <div class="form-group">
-                    <div id="divtextarea">
-                        <textarea id="posttextarea" name="content">{!! $post->post_content !!}</textarea>
-                    </div>
+                <div id="divtextarea" class="box-shadow-large">
+                    <textarea id="form-post-textarea" name="post_content" class="border-0 p-2" style="min-height:225px; width: 100%; outline: none; resize: none;">{!! $post->post_content !!}</textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Update post</button>
+                <div class="m-3 float-right">
+                    <button type="submit" class="btn btn-success">Update Post</button>
+                </div>
             </form>
         </div>
     </div>

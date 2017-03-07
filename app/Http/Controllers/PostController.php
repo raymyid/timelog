@@ -52,18 +52,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 验证客户端提交的数据是否符合要求
         $this->validate($request, [
-            'title' => 'required|max:255',
-            'content' => 'required',
+            'post_title' => 'required|max:255',
+            'post_content' => 'required',
         ]);
 
         $post = new Post;
 
         $post->id = base_convert(uniqid(), 16, 10);
         $post->post_user_id = $request->user()->id;
-        $post->post_title = trim($request->title);
-        $post->post_content = Purifier::clean($request->content);
+        $post->post_title = trim($request->post_title);
+        $post->post_content = Purifier::clean($request->post_content);
 
         $post->save();
 
@@ -107,10 +107,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // 校验请求的参数
+        // 验证客户端提交的数据是否符合要求
         $this->validate($request, [
-            'title' => 'required|max:255',
-            'content' => 'required',
+            'post_title' => 'required|max:255',
+            'post_content' => 'required',
         ]);
 
         // 校验用户 id 是否为 post 的所有者 id
@@ -119,8 +119,8 @@ class PostController extends Controller
             return redirect(route('posts.show', $post->id));
         }
 
-        $post->post_title = trim($request->title);
-        $post->post_content = Purifier::clean($request->content);
+        $post->post_title = trim($request->post_title);
+        $post->post_content = Purifier::clean($request->post_content);
 
         $post->save();
 
