@@ -25,4 +25,4 @@ mix.copy('node_modules/tinymce/plugins/', 'public/js/tinymce/plugins/', false);
 mix.copy('node_modules/tinymce/themes/', 'public/js/tinymce/themes/', false);
 mix.copy('node_modules/tinymce/skins/', 'public/js/tinymce/skins/', false);
 mix.copy('node_modules/tinymce/skins/lightgray/', 'public/js/tinymce/skins/custom/', false);
-mix.copy('resources/assets/tinymce/skins/', 'public/js/tinymce/skins/', false);
+mix.copy('resources/assets/tinymce/', 'public/js/tinymce/', false);
