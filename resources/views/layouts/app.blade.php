@@ -75,7 +75,7 @@
                                     <li>
                                         <a href="{{ route('auth.logout') }}"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                        document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
@@ -91,14 +91,12 @@
             </div>
         </nav>
 @yield('content')
+        <footer class="mt-6 p-2" style="background-color: #333">
+            <div class="container">
+                <span>Powered by <a href="https://github.com/xiaoruicode/timelog">Timelog</a></span>
+            </div>
+        </footer>
     </div>
-
-    <footer class="mt-6 p-2" style="background-color: #333">
-        <div class="container">
-            <span>Powered by <a href="https://github.com/xiaoruicode/timelog">Timelog</a></span>
-        </div>
-    </footer>
-
     <!-- Scripts -->
     <script src="{{ mix('/js/manifest.js') }}"></script>
     <script src="{{ mix('/js/vendor.js') }}"></script>

@@ -40,3 +40,14 @@ Route::resource('comments', 'CommentController');
 Route::resource('commentreplies', 'CommentReplyController');
 
 Route::get('home', 'HomeController@index')->name('home.index');
+
+// 后台管理
+Route::group(
+    [
+        'prefix' => 'admin',
+        'middleware' => 'auth'
+    ], 
+    function () {
+        Route::get('/', 'IndexController@admin')->name('admin.index');
+    }
+);
