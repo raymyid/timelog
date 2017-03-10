@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,28 +11,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // $users = factory(App\Models\User::class)->times(300)->make();
-        // App\Models\User::insert($users->toArray());
+        $seederSize = config('app.seeder_size.seeder_users_size');
 
+        // Crate admin account
+        $this->call(UsersAdminSeeder::class);
+
+        // Create test account
         $faker = Faker\Factory::create();
         $users = [];
-
-        // DB::table('users')->delete();
-
-        $admin = [
-            'id' => 10000,
-            'username' => 'admin',
-            'nickname' => 'admin',
-            'password' => bcrypt('admin'),
-            'created_at' => $faker->dateTimeThisYear,
-            'updated_at' => $faker->dateTimeThisYear,
-        ];
-
-        if (is_null(DB::table('users')->where('id', 10000)->first())) {
-            DB::table('users')->insert($admin);
-        }
-
-        foreach (range(1, 100) as $i)
+        // Loop build sql
+        foreach (range(1, $seederSize) as $i)
         {
             $users[] = [
                 'id' => base_convert(uniqid(), 16, 10),
@@ -40,12 +28,12 @@ class UsersTableSeeder extends Seeder
                 'nickname' => $faker->name,
                 'email' => $faker->unique()->freeEmail,
                 'avatar' => $faker->imageUrl(300, 300),
-                'password' => bcrypt('password123'),
+                'password' => bcrypt('password'),
                 'created_at' => $faker->dateTimeThisYear,
                 'updated_at' => $faker->dateTimeThisYear,
             ];
         }
-
+        // One-time insert
         DB::table('users')->insert($users);
     }
 }
