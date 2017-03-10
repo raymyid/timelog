@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PostsTableSeeder extends Seeder
+class PostsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,13 +11,17 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
+        $seederSize = config('app.seeder_size.seeder_posts_size');
+
+        // 先判断 users 数量，太少则需要生成一些数据
+        if (DB::table('users')->count() < 50) {
+            $this->call(UsersSeeder::class);
+        }
+        
         $faker = Faker\Factory::create();
         $users = DB::table('users')->pluck('id')->all();
         $posts = [];
-
-        // DB::table('posts')->delete();
-
-        foreach (range(1, 100) as $i)
+        foreach (range(1, $seederSize) as $i)
         {
             $posts[] = [
                 'id' => base_convert(uniqid(), 16, 10),
@@ -28,7 +32,6 @@ class PostsTableSeeder extends Seeder
                 'updated_at' => $faker->dateTimeThisYear,
             ];
         }
-
         DB::table('posts')->insert($posts);
     }
 }
