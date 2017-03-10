@@ -235,8 +235,8 @@ return [
     // custom var
 
     'seeder_size' => [
-        'seeder_users_size' => env('SEEDER_USERS_SIZE', env('SEEDER_DEFAULT_SIZE', 50)),
-        'seeder_posts_size' => env('SEEDER_POSTS_SIZE', env('SEEDER_DEFAULT_SIZE', 50)),
-        'seeder_comments_size' => env('SEEDER_COMMENTS_SIZE', env('SEEDER_DEFAULT_SIZE', 50)),
+        'seeder_users_size' => env('SEEDER_USERS_SIZE', env('SEEDER_DEFAULT_SIZE', 10)),
+        'seeder_posts_size' => env('SEEDER_POSTS_SIZE', env('SEEDER_DEFAULT_SIZE', 10)),
+        'seeder_comments_size' => env('SEEDER_COMMENTS_SIZE', env('SEEDER_DEFAULT_SIZE', 10)),
     ],
 ];

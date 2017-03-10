@@ -12,9 +12,9 @@ class CommentsSeeder extends Seeder
     public function run()
     {
         $seederSize = config('app.seeder_size.seeder_comments_size');
+        if ($seederSize <= 0) { $seederSize = 10; }
 
-        // 先判断 posts 数量，太少则需要生成一些数据
-        if (DB::table('posts')->count() < 50) {
+        if (DB::table('posts')->count() === 0) {
             $this->call(PostsSeeder::class);
         }
         

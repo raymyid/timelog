@@ -12,9 +12,9 @@ class PostsSeeder extends Seeder
     public function run()
     {
         $seederSize = config('app.seeder_size.seeder_posts_size');
+        if ($seederSize <= 0) { $seederSize = 10; }
 
-        // 先判断 users 数量，太少则需要生成一些数据
-        if (DB::table('users')->count() < 50) {
+        if (DB::table('users')->count() === 0) {
             $this->call(UsersSeeder::class);
         }
         

@@ -12,6 +12,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $seederSize = config('app.seeder_size.seeder_users_size');
+        if ($seederSize <= 0) { $seederSize = 10; }
 
         // Crate admin account
         $this->call(UsersAdminSeeder::class);
