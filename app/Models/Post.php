@@ -16,11 +16,12 @@ class Post extends Model
      */
     public function post_user()
     {
-        return $this->belongsTo('App\Models\User', 'post_user_id');
+        return $this->belongsTo('\App\Models\User', 'post_user_id');
     }
 
     public function post_comments()
     {
-        return $this->hasMany('App\Models\Comment', 'comment_post_id', 'id')->orderBy('created_at', 'asc');
+        return $this->hasMany('\App\Models\Comment', 'comment_post_id', 'id')
+            ->orderBy('created_at', 'asc');
     }
 }

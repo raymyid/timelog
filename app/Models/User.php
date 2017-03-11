@@ -28,6 +28,7 @@ class User extends Authenticatable
      */
     public function user_posts()
     {
-        return $this->hasMany('\App\Models\Post', 'post_user_id', 'id')->orderBy('updated_at', 'desc');
+        return $this->hasMany('\App\Models\Post', 'post_user_id', 'id')
+            ->orderBy('updated_at', 'desc');
     }
 }

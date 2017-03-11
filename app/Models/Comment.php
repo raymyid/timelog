@@ -10,6 +10,6 @@ class Comment extends Model
 
     public function comment_user()
     {
-        return $this->belongsTo('App\Models\User', 'comment_user_id');
+        return $this->belongsTo('\App\Models\User', 'comment_user_id');
     }
 }
