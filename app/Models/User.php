@@ -22,6 +22,20 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [];
+
+    /**
+     * The attributes that should be visible in arrays.
+     *
+     * @var array
+     */
+    protected $visible = ['id', 'username'];
+
+    /**
      * Get user all posts
      *
      * @return \App\Models\Post

@@ -9,6 +9,8 @@ class Post extends Model
 {
     public $incrementing = false;
 
+    protected $hidden = ['post_content'];
+
     /**
      * Get post user
      *
