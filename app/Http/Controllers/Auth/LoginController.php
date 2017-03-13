@@ -20,9 +20,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers {
-        AuthenticatesUsers::login as laravelLogin;
-    }
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -30,13 +28,6 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
-
-    /**
-     * Login field.
-     *
-     * @var string
-     */
-    protected $username = 'login';
 
     /**
      * Create a new controller instance.
@@ -55,23 +46,18 @@ class LoginController extends Controller
      */
     public function username()
     {
-        return $this->username;
-    }
+        if (!is_null(request()->get('merged_at'))) {
+            return request()->get('merged_at');
+        }
 
-    /**
-     * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $request)
-    {
-        $login = $request->get('login');
-        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        $request->merge([$field => $login]);
-        $this->username = $field;
-
-        return self::laravelLogin($request);
+        $login = request()->get('login');
+        if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
+            $field = 'email';
+        } else {
+            $field = 'username';
+        }
+        request()->merge([$field => $login, 'merged_at' => $field]);
+        return $field;
     }
 
     /**
